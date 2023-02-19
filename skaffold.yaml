@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2beta27
+kind: Config
+metadata:
+  name: system-info-web
+build:
+  local:
+    useBuildkit: true             # We use BuildKit
+  artifacts:
+  - image: localhost:5001/env-app
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/mydeployment.yaml
+    - K8s/myservice.yaml
+test:
+  - image: localhost:5001/env-app
+    custom:
+      - command: ./test.sh
+        timeoutSeconds: 60

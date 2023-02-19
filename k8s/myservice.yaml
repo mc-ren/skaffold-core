@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: env-app-svc
+spec:
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000
+      nodePort: 30007
+  selector:
+    app: env-app

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: env-app
+  name: env-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: env-app
+  template:
+    metadata:
+      labels:
+        app: env-app
+    spec:
+      containers:
+        - image: localhost:5001/env-app
+          name: env-app
